@@ -4,6 +4,8 @@ import java.util.List;
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+import com.song.commons.paging.Criteria;
 import com.song.domain.ArticleVO;
 
 @Repository
@@ -40,4 +42,19 @@ public class ArticleDAOImpl implements ArticleDAO {
 	public List<ArticleVO> listAll() throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".listAll");
 	}
+
+	// 페이징 처리를 위한 추상메소드 구현
+	@Override
+	public List<ArticleVO> listPaging(int page) throws Exception {
+		if (page <= 0) {
+			page = 1;
+		}
+		page = (page - 1) * 10;
+		return sqlSession.selectList(NAMESPACE + ".listPaging", page);
+	}
+	@Override
+	public List<ArticleVO> listCriteria(Criteria criteria) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".listCriteria", criteria);
+	}
+
 }

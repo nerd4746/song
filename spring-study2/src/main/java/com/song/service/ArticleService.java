@@ -1,11 +1,11 @@
-package com.song.persistence;
+package com.song.service;
 
 import java.util.List;
 
 import com.song.commons.paging.Criteria;
 import com.song.domain.ArticleVO;
 
-public interface ArticleDAO {
+public interface ArticleService {
 	void create(ArticleVO articleVO) throws Exception;
 
 	ArticleVO read(Integer article_no) throws Exception;
@@ -16,9 +16,5 @@ public interface ArticleDAO {
 
 	List<ArticleVO> listAll() throws Exception;
 	
-	List<ArticleVO> listPaging(int page) throws Exception;
-	
 	List<ArticleVO> listCriteria(Criteria criteria) throws Exception;
-
-
 }
