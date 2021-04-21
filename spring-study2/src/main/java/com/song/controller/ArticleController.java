@@ -1,6 +1,7 @@
 package com.song.controller;
 
 import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -44,13 +45,7 @@ public class ArticleController {
 		return "redirect:/article/list";
 	}
 
-	// 목록 페이지 이동
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model) throws Exception {
-		logger.info("list ...");
-		model.addAttribute("articles", articleService.listAll());
-		return "/article/list";
-	}
+	
 
 	// 조회 페이지 이동
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
@@ -95,7 +90,7 @@ public class ArticleController {
 		return "/article/list_criteria";
 	}
 
-	@RequestMapping(value = "/listPaging", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listPaging(Model model, Criteria criteria) throws Exception {
 		logger.info("listPaging ...");
 		PageMaker pageMaker = new PageMaker();
@@ -105,5 +100,15 @@ public class ArticleController {
 		model.addAttribute("pageMaker", pageMaker);
 		return "/article/list_paging";
 	}
-
+	
+	@RequestMapping(value = "/listPaging", method = RequestMethod.GET)
+	public String listPaging2(Model model, Criteria criteria) throws Exception {
+		logger.info("listPaging ...");
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(1000);
+		model.addAttribute("articles", articleService.listCriteria(criteria));
+		model.addAttribute("pageMaker", pageMaker);
+		return "/article/list_paging";
+	}
 }

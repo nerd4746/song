@@ -2,7 +2,7 @@
 <configuration>
 		
     <typeAliases>
-        <typeAlias type="com.song.domain.ArticleVO" alias="ArticleVO"/>
+        <typeAlias type="com.song.domain.ArticleVO"/>
     </typeAliases>
 </configuration>
 

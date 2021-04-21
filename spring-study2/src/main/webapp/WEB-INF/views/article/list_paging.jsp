@@ -75,12 +75,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									</tbody>
 								</table>
 							</div>
+							
+							<div class="card-footer">
+								<nav aria-label="Contacts Page Navigation">
+									<ul class="pagination justify-content-center m-0">
+										<c:if test="${pageMaker.prev}">
+											<li class="page-item"><a class="page-link"
+												href="${path}/article/listPaging?page=${pageMaker.startPage - 1}">이전</a></li>
+										</c:if>
+										<c:forEach begin="${pageMaker.startPage}"
+											end="${pageMaker.endPage}" var="idx">
+											<li class="page-item"
+												<c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>
+												<a class="page-link"
+												href="${path}/article/listPaging?page=${idx}">${idx}</a>
+											</li>
+										</c:forEach>
+										<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+											<li class="page-item"><a class="page-link"
+												href="${path}/article/listPaging?page=${pageMaker.endPage + 1}">다음</a></li>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
+
 							<div class="card-footer">
 								<div class="float-right">
-									<button onclick="location.href='/article/write'" type=button class="btn btn-success btn-flat"> 
+									<button onclick="location.href='/article/write'" type=button
+										class="btn btn-success btn-flat">
 										<i class="fa fa-pencil">글쓰기</i>
 									</button>
-							
+
 								</div>
 							</div>
 						</div>
@@ -111,16 +136,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<%@ include file="../include/plugin_js.jsp"%>
 </body>
 <script>
-	var result = "${msg}"; 
+	var result = "${msg}";
 	if (result == "regSuccess") {
- 	alert("게시글 등록이완료되었습니다."); 
- 	} else if 
- 		(result == "modSuccess") {
- 	 	alert("게시글 수정이완료되었습니다.");
- 		  } else if
- 	   	(result == "delSuccess") {
- 	    	alert("게시글 삭제가완료되었습니다.");
- 	 }
+		alert("게시글 등록이완료되었습니다.");
+	} else if (result == "modSuccess") {
+		alert("게시글 수정이완료되었습니다.");
+	} else if (result == "delSuccess") {
+		alert("게시글 삭제가완료되었습니다.");
+	}
 </script>
 
 </html>

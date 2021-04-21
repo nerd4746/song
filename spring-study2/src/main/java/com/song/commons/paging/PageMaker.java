@@ -1,8 +1,11 @@
 package com.song.commons.paging;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 //페이지 하단 번호 출력을 위한 클래스
 public class PageMaker {
-	
+
 	private int startPage;
 	private int endPage;
 	private boolean prev;
@@ -10,17 +13,15 @@ public class PageMaker {
 	private int displayPageNum = 10; // 하단 페이지 번호의 갯수
 	private Criteria criteria;
 	private int totalCount;
-	
-	
-	public void setCriteria(Criteria criteria)
-	{
+
+	public void setCriteria(Criteria criteria) {
 		this.criteria = criteria;
 	}
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 		calcData();
-	} 
+	}
 	// 게시글의 전체 갯수가 결정되면 calcData 메소드를 호출하여 계산 실행
 
 	private void calcData() {
@@ -81,6 +82,11 @@ public class PageMaker {
 	public Criteria getCriteria() {
 		return criteria;
 	}
+	//uri 작성할때 유용 makeQuery메소드를 통해 uri자동 생성 가능
+	public String makeQuery(int page) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
+				.queryParam("perPageNum", criteria.getPerPageNum()).build();
+		return uriComponents.toUriString();
+	}
+
 }
-
-
