@@ -33,7 +33,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			// userVO가 null이 아니면 httpsession에 userVO를 저장하고 /루트로 redirect
 			if (userVO != null) { 
 				logger.info("new login success");
-				httpSession.setAttribute(LOGIN, userVO);
+				httpSession.setAttribute(LOGIN, userVO);				
 				response.sendRedirect("/");
 			} 
 		}

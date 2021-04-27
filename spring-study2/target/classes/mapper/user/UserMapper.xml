@@ -27,10 +27,10 @@
 		, #{userEmail}
 		)
 	</insert>
-	<select id="login" resultMap="userVOResultMap"> 
-		SELECT 
-		  * 
-		FROM tb_user
-		WHERE user_id = #{userId}
-    </select>
+	<select id="login" resultMap="userVOResultMap">
+    	SELECT
+      	  *
+    	FROM tb_user
+    	WHERE user_id = #{userId}
+	</select>
 </mapper>

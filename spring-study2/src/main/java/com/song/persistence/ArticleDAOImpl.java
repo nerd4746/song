@@ -52,9 +52,15 @@ public class ArticleDAOImpl implements ArticleDAO {
 		page = (page - 1) * 10;
 		return sqlSession.selectList(NAMESPACE + ".listPaging", page);
 	}
+
 	@Override
 	public List<ArticleVO> listCriteria(Criteria criteria) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".listCriteria", criteria);
+	}
+	//게시글 조회에 대한 트랜잭션처리 추상메소드 구현
+	@Override
+	public void updateViewCnt(Integer article_no) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateViewCnt", article_no);
 	}
 
 }

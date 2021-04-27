@@ -1,6 +1,6 @@
 package com.song.controller;
 
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import com.song.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserLoginController {
-	
+
 	private final UserService userService;
 
 	@Autowired
@@ -26,22 +26,43 @@ public class UserLoginController {
 	}
 
 	// 로그인 페이지
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginGET(@ModelAttribute("loginDTO") LoginDTO loginDTO) {
 		return "/user/login";
 	}
+
 	// 로그인 처리
 	@RequestMapping(value = "/loginPost", method = RequestMethod.POST)
 	public void loginPOST(LoginDTO loginDTO, HttpSession httpSession, Model model) throws Exception {
-		
-		UserVO userVO = userService.login(loginDTO); //입력으로 부터 받은 회원정보 중에서 아이디를 통해 select한 회원 정보를 uservo에 담는다. 
-		
+
+		UserVO userVO = userService.login(loginDTO); // 입력으로 부터 받은 회원정보 중에서 아이디를 통해 select한 회원 정보를 uservo에 담는다.
+
 		if (userVO == null || !BCrypt.checkpw(loginDTO.getUserPw(), userVO.getUserPw())) {
 			return; // userVO가 null이거나 BCrypt.checkpw()를 통해 검증해서 맞지않으면 메서드 종료
 		}
-		
-		model.addAttribute("user", userVO); // true일시 model에 userVO를 user변수로 저장했기때문에 Object userVO = modelMap.get("user"); 가능
-	
+
+		model.addAttribute("user", userVO); // true일시 model에 userVO를 user변수로 저장했기때문에 Object userVO =
+											// modelMap.get("user"); 가능
+
 	}
-	
+
+	// 로그아웃 처리
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, HttpServletRequest response, HttpSession httpSession)
+			throws Exception {
+
+		Object object = httpSession.getAttribute("login");
+		if (object != null) {
+			UserVO userVO = (UserVO) object;
+			httpSession.removeAttribute("login");
+			httpSession.invalidate();
+			}
+		return "/user/logout";
+	}
+	// 로그인 안된 유저 처리
+	@RequestMapping(value = "/notlogin", method = RequestMethod.GET)
+	public String notlogged() throws Exception {
+		return "/user/notlogged";
+	}
 
 }

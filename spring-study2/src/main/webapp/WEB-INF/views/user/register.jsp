@@ -1,62 +1,91 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <!DOCTYPE html>
 <html>
-<head>
-<title>register</title>
-</head>
-<link href="../resources/css/UserForm.css" rel="stylesheet">
-<body>
-<!-- REGISTRATION FORM -->
-<div class="text-center" style="padding:50px 0">
-	<div class="logo">회원가입</div>
-	<!-- Main Form -->
-	<div class="login-form-1">
-		<form action="${path}/user/register" method="post" id="register-form" class="text-left">
-			<div class="login-form-main-message"></div>
-			<div class="main-login-form">
-				<div class="login-group">
-					<div class="form-group">
-					
-						<label for="reg_username" class="sr-only">Username</label>
-						<input type="text" class="form-control" id="reg_username" name="userId" placeholder="">
+<%@ include file="../include/head.jsp"%>
+<body class="hold-transition register-page">
+	<div class="register-box">
+		<div class="register-logo">
+		</div>
+		<div class="card">
+			<div class="card-body register-card-body">
+				<p class="login-box-msg">register</p>
+				<form action="${path}/user/register" method="post">
+					<div class="input-group mb-3">
+						<input type="text" name="userId" class="form-control"
+							placeholder="아이디">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-exclamation"></span>
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="reg_password" class="sr-only">Password</label>
-						<input type="password" class="form-control" id="reg_password" name="userPw" placeholder="">
+					<div class="input-group mb-3">
+						<input type="text" name="userName" class="form-control"
+							placeholder="이름">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-user"></span>
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="reg_password_confirm" class="sr-only">Password Confirm</label>
-						<input type="password" class="form-control" id="reg_password_confirm"  placeholder="">
+					<div class="input-group mb-3">
+						<input type="email" name="userEmail" class="form-control"
+							placeholder="이메일">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-envelope"></span>
+							</div>
+						</div>
 					</div>
-					
-					<div class="form-group">
-						<label for="reg_email" class="sr-only">Email&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-						<input type="text" class="form-control" id="reg_email" name="userEmail" placeholder="">
+					<div class="input-group mb-3">
+						<input type="password" name="userPw" class="form-control"
+							placeholder="비밀번호">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="reg_fullname" class="sr-only">Full Name</label>
-						<input type="text" class="form-control" id="reg_fullname" name="userName" placeholder="">
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" placeholder="비밀번호 확인">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
 					</div>
-					<div class="form-group login-group-checkbox">
-						<input type="checkbox" class="" id="reg_agree" name="reg_agree">
-						<label for="reg_agree">약관에 동의</label>
+					<div class="row">
+						<div class="col-8">
+							<div class="icheck-primary">
+								<input type="checkbox" id="agreeTerms" name="terms"
+									value="agree"> <label for="agreeTerms"> 약관에 동의합니다. 
+								</label>
+							</div>
+						</div>
+						<!-- /.col -->
+						<div class="col-4">
+							<button type="submit" class="btn btn-primary btn-block">회원가입</button>
+						</div>
+						<!-- /.col -->
 					</div>
-				</div>
-				<button type="submit" class="login-button"><i class="fa fa-chevron-right">L</i></button>
+				</form>
+				<a href="${path}/user/login" class="text-center">이미 회원인 경우</a>
 			</div>
-			<div class="etc-login-form">
-				<p>이미 회원이신가요?<a href="${path}/user/login">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp로그인하기</a></p>
-			</div>
-		</form>
+			<!-- /.form-box -->
+		</div>
+		<!-- /.card -->
 	</div>
-	<!-- end:Main Form -->
-</div>
-<script> 
-	$(function () { $('input').iCheck({ checkboxClass: 'icheckbox_square-blue',
-		
-		 radioClass: 'iradio_square-blue', increaseArea: '20%'  
-			  });
-	   }); 
-</script>
+	<!-- /.register-box -->
+	<%@ include file="../include/plugin_js.jsp"%>
+	<script> $(function () {
+			 	$('input').iCheck({
+			  		checkboxClass: 'icheckbox_square-blue',
+			  		radioClass: 'iradio_square-blue',
+			  		increaseArea: '20%'
+			  	 });
+			 });
+	 </script>
+
 </body>
 </html>
+

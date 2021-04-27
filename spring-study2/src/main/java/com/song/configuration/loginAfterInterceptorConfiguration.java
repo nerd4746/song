@@ -1,21 +1,19 @@
-
 package com.song.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.song.interceptor.LoginInterceptor;
+import com.song.interceptor.LoginAfterInterceptor;
 
 @Configuration
-public class InterceptorConfiguration implements WebMvcConfigurer {
-
+public class loginAfterInterceptorConfiguration implements WebMvcConfigurer{
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new LoginInterceptor())
-		.addPathPatterns("/user/loginPost") 
-		.excludePathPatterns("/css/**", "/fonts/**", "/plugin/**", "/scripts/**"); 
-	}
-		
+		registry.addInterceptor(new LoginAfterInterceptor())
+		.addPathPatterns("/user/login")
+		.addPathPatterns("/user/register");		
 	}
 
+}

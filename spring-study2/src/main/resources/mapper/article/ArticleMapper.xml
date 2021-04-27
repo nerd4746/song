@@ -51,6 +51,14 @@
 		WHERE article_no =
 		#{article_no}
 	</delete>
+	
+	<update id="updateViewCnt">
+		 UPDATE tbl_article
+		 SET
+		 viewcnt = viewcnt + 1 
+		 WHERE
+		 article_no = #{article_no}
+	</update>
 
 	<select id="listAll" resultType="com.song.domain.ArticleVO">
         <![CDATA[
@@ -82,7 +90,7 @@
  		LIMIT #{pageStart}, 10
  		]]>
 	</select>
-	
+
 	<select id="listCriteria" resultMap="ArticleResultMap">
 	     <![CDATA[
     	SELECT
@@ -98,8 +106,7 @@
     	LIMIT #{pageStart}, #{perPageNum}
     	]]>
 	</select>
-
-
+	
 	<resultMap id="ArticleResultMap"
 		type="com.song.domain.ArticleVO">
 		<id property="article_no" column="article_no" />

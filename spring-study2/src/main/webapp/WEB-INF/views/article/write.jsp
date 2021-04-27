@@ -36,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<!-- /.col -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
+								<li class="breadcrumb-item"><a href="/">Home</a></li>
 								<li class="breadcrumb-item active">Starter Page</li>
 							</ol>
 						</div>
@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									</div>
 								</div>
 								<div class="card-footer">
-									<button type="button" class="btn btn-primary">
+									<button type="button" class="btn btn-primary" onclick="location.href='/article/list'">
 										<i class="fa fa-list"></i> 목록
 									</button>
 									<div class="float-right">

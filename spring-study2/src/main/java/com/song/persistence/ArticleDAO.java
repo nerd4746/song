@@ -20,5 +20,6 @@ public interface ArticleDAO {
 	
 	List<ArticleVO> listCriteria(Criteria criteria) throws Exception;
 
+	void updateViewCnt(Integer article_no) throws Exception;
 
 }
