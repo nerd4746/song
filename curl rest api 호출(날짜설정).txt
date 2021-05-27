@@ -1,4 +1,4 @@
-curl -u p094490:p094490!@# -G "http://devops.sktelecom.com/myshare/rest/api/content/search" --data-urlencode "cql=space=WGCAC and lastmodified >= 2021-05-26" | python -m json.tool
+curl -u username:password -G "http://devops.sktelecom.com/myshare/rest/api/content/search" --data-urlencode "cql=space=DOSS and lastmodified >= 2021-05-26" | python -m json.tool
 ## lastmodified >= 2021-05-26  5/26 ~ 현재까지
 ## lastmodified = 2021-05-26  해당날짜
 ## (lastmodified >= 2021-01-01 and lastmodified <= 2021-05-05) 1/1 ~ 5/5 까지
