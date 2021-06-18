@@ -1,0 +1,11 @@
+curl -u ID:pw -G "http://devops.sktelecom.com/myshare/rest/api/content/search?start=0&limit=10000" --data-urlencode "cql=lastmodified >= 2021-06-01 and lastmodified <= 2021-06-02 order by lastmodified desc" | jq -r .results[]._expandable.space
+
+( 모든 프로젝트를 대상으로 설정일자 범위내 수정을 감지하여 오름차순 출력) (max size = 500) 
+
+쿼리 실행시 max size = 500 페이지로 출력되게 limit 되어있기 때문에 변경된 페이지가 500페이지 넘을경우 start 값을 설정.
+
+ex) /search?start=500&limit=500
+
+ ==> 501page ~ 1000page 출력. 
+
+
